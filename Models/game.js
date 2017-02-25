@@ -76,3 +76,11 @@ Game.prototype.checkers = function() {
   //add other checkers
     //collision detection
 };
+
+
+
+Game.prototype.updateEntity = function(package){
+  if(package.up){
+    console.log("hello")
+  }
+};
