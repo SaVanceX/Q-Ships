@@ -49,6 +49,7 @@ Game.prototype.removePlayer = function(uuid) {
 //
 Game.prototype.newFrame = function() {
   for (var i = 0; i < this.players.length; i++) {
+
     this.players[i].ship.navigateTheStars();
     this.players[i].ship.move();
     for (var j = 0; j < this.players[i].ship.pewBay.length; j++) {
@@ -80,7 +81,14 @@ Game.prototype.checkers = function() {
 
 
 Game.prototype.updateEntity = function(package){
-  if(package.up){
-    console.log("hello")
+  if(package.keys){
+    // debugger
+    this.players[0].ship.keys.up = package.keys.up;
+    this.players[0].ship.keys.down = package.keys.down;
+    this.players[0].ship.keys.left = package.keys.left;
+    this.players[0].ship.keys.right = package.keys.right;
+  }
+  if(package.fire){
+    this.players[0].ship.sayPew()
   }
 };

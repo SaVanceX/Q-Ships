@@ -41,70 +41,78 @@ document.addEventListener("DOMContentLoaded", function(event) {
 // ws.sendMessage(JSON.stringify({messageType: "entityUpdate", update: {id: "jf9324j32", keys: [true, true, false, false]}})
 //sets up event listeners for up, down, left, right
 
-function keyStrokeListeners(game) {
+function keyStrokeListeners() {
   //document event listener for keydown
-  var keys = {up: false, down: false, left: false, right: false}
+  var keys = {keys: {up: false, down: false, left: false, right: false}}
 
   document.addEventListener('keydown', function(event){
     //listening for up
-    if(event.keyCode === 38 && keys.up === false) {
-      keys.up = true;
+    if(event.keyCode === 38 && keys.keys.up === false) {
+      keys.keys.up = true;
       // send json to server controller
       //SEND THIS!!! JSON.stringify(keys)
-      websock.object = keys
+      websock.package = keys
+      websock.sent = true
 
     }
     //listening for down
-    if(event.keyCode === 40 && keys.down === false ) {
-      keys.down = true;
+    if(event.keyCode === 40 && keys.keys.down === false ) {
+      keys.keys.down = true;
       // send json to server controller
        //SEND THIS!!! JSON.stringify(keys)
-       websock.object = keys
+       websock.package = keys
+       websock.sent = true
     }
 
     //listening for left
-    if(event.keyCode === 37 && keys.left === false) {
-      keys.left = true;
+    if(event.keyCode === 37 && keys.keys.left === false) {
+      keys.keys.left = true;
       // send json to server controller
        //SEND THIS!!! JSON.stringify(keys)
-       websock.object = keys
+       websock.package = keys
+       websock.sent = true
     }
 
     // listening for right
-    if(event.keyCode === 39 && keys.right === false ) {
-      keys.right = true;
+    if(event.keyCode === 39 && keys.keys.right === false ) {
+      keys.keys.right = true;
       // send json to server controller
       //SEND THIS!!! JSON.stringify(keys)
-      websock.object = keys
+      websock.package = keys
+      websock.sent = true
     }
   });
 
   //document event listener for keydown to reset keys to false
   document.addEventListener('keyup', function(event){
     if(event.keyCode === 38) {
-      keys.up = false;
+      keys.keys.up = false;
        //SEND THIS!!! JSON.stringify(keys)
-       websock.object = keys
+       websock.package = keys
+       websock.sent = true
     }
     if(event.keyCode === 40) {
-      keys.down = false;
+      keys.keys.down = false;
        //SEND THIS!!! JSON.stringify(keys)
-       websock.object = keys
+       websock.package = keys
+       websock.sent = true
     }
     if(event.keyCode === 37) {
-      keys.left = false;
+      keys.keys.left = false;
        //SEND THIS!!! JSON.stringify(keys)
-       websock.object = keys
+       websock.package = keys
+       websock.sent = true
     }
     if(event.keyCode === 39) {
-      keys.right = false;
+      keys.keys.right = false;
        //SEND THIS!!! JSON.stringify(keys)
-       websock.object = keys
+       websock.package = keys
+       websock.sent = true
     }
     if(event.keyCode === 32) {
       // send a missle json that is stamped with a user id
       //SEND THIS!!!! "fire"
-      websock.object = {fire:"pew"}
+      websock.package = {fire:"pew"}
     }
   });
 }
