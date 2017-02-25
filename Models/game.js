@@ -46,23 +46,24 @@ Game.prototype.removePlayer = function(uuid) {
   this.players.splice(quitter, 1);
 }
 
-Game.prototype.makeTheWorldMove = function() {
+//
+Game.prototype.newFrame = function() {
   for (var i = 0; i < this.players.length; i++) {
 
     this.players[i].ship.navigateTheStars();
-    this.players[i].ship.move(this.width, this.height);
+    this.players[i].ship.move();
     for (var j = 0; j < this.players[i].ship.pewBay.length; j++) {
-      this.players[i].ship.pewBay[j].move(this.width, this.height)
+      this.players[i].ship.pewBay[j].move();
     }
   }
 }
 
-//game loop will run 50 fps and run new frame and checkers
 
+//game loop will run 50 fps and run new frame and checkers
 Game.prototype.gameLoop = function() {
   self = this;
   setInterval(function(){
-    self.makeTheWorldMove();
+    self.newFrame();
     self.checkers();
   },1000/50);
 }
@@ -80,8 +81,8 @@ Game.prototype.checkers = function() {
 
 
 Game.prototype.updateEntity = function(package){
+  var package = JSON.parse(package)
   if(package.keys){
-    // debugger
     this.players[0].ship.keys.up = package.keys.up;
     this.players[0].ship.keys.down = package.keys.down;
     this.players[0].ship.keys.left = package.keys.left;

@@ -51,8 +51,7 @@ function keyStrokeListeners() {
     if(event.keyCode === 38 && keys.keys.up === false) {
       keys.keys.up = true;
       // send json to server controller
-      //SEND THIS!!! JSON.stringify(keys)
-      websock.package = keys
+      websock.package = JSON.stringify(keys)
       websock.sent = true
 
     }
@@ -60,26 +59,23 @@ function keyStrokeListeners() {
     if(event.keyCode === 40 && keys.keys.down === false ) {
       keys.keys.down = true;
       // send json to server controller
-       //SEND THIS!!! JSON.stringify(keys)
-       websock.package = keys
-       websock.sent = true
+      websock.package = JSON.stringify(keys)
+      websock.sent = true
     }
 
     //listening for left
     if(event.keyCode === 37 && keys.keys.left === false) {
       keys.keys.left = true;
       // send json to server controller
-       //SEND THIS!!! JSON.stringify(keys)
-       websock.package = keys
-       websock.sent = true
+      websock.package = JSON.stringify(keys)
+      websock.sent = true
     }
 
     // listening for right
     if(event.keyCode === 39 && keys.keys.right === false ) {
       keys.keys.right = true;
       // send json to server controller
-      //SEND THIS!!! JSON.stringify(keys)
-      websock.package = keys
+      websock.package = JSON.stringify(keys)
       websock.sent = true
     }
   });
@@ -88,32 +84,28 @@ function keyStrokeListeners() {
   document.addEventListener('keyup', function(event){
     if(event.keyCode === 38) {
       keys.keys.up = false;
-       //SEND THIS!!! JSON.stringify(keys)
-       websock.package = keys
-       websock.sent = true
+      websock.package = JSON.stringify(keys)
+      websock.sent = true
     }
     if(event.keyCode === 40) {
       keys.keys.down = false;
-       //SEND THIS!!! JSON.stringify(keys)
-       websock.package = keys
-       websock.sent = true
+      websock.package = JSON.stringify(keys)
+      websock.sent = true
     }
     if(event.keyCode === 37) {
       keys.keys.left = false;
-       //SEND THIS!!! JSON.stringify(keys)
-       websock.package = keys
-       websock.sent = true
+      websock.package = JSON.stringify(keys)
+      websock.sent = true
     }
     if(event.keyCode === 39) {
       keys.keys.right = false;
-       //SEND THIS!!! JSON.stringify(keys)
-       websock.package = keys
-       websock.sent = true
+      websock.package = JSON.stringify(keys)
+      websock.sent = true
     }
     if(event.keyCode === 32) {
       // send a missle json that is stamped with a user id
       //SEND THIS!!!! "fire"
-      websock.package = {fire:"pew"}
+      websock.package = JSON.stringify({fire:"pew"})
     }
   });
 }

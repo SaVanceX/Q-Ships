@@ -66,21 +66,6 @@ Ship.prototype.navigateTheStars = function() {
   }
 };
 
-Ship.prototype.move = function(width, height) { 
-  this.x += this.dx;
-  this.y += this.dy;
-  if (this.x > width) {
-    this.x = this.x - width;
-  } else if (this.x < 0) {
-    this.x = this.x + width;
-  }
-  if (this.y > height) {
-    this.y = this.y - height;
-  } else if (this.y < 0) {
-    this.y = this.y + height;
-  }
-}
-
 Ship.prototype.speed = function() {
   return (Math.sqrt(this.dx**2 + this.dy**2));
 }
@@ -92,14 +77,10 @@ Ship.prototype.sayPew = function() {
   this.y -= recoil * Math.sin(this.rad);
 }
 
-Ship.prototype.removePew = function() {
-  var self = this;
-  for(var i=0; i < this.pewBay.length; i++){
-    if(this.pewBay[i].isExpired === true){
-      self.pewBay.splice(i,1)
-    }
-  }
-};
+Ship.prototype.move = function() { 
+  this.x += this.dx;
+  this.y += this.dy;
+}
 
 Ship.prototype.snapshot = function() {
   return {
@@ -109,3 +90,12 @@ Ship.prototype.snapshot = function() {
     type: "ship"
   }
 }
+
+Ship.prototype.removePew = function() {
+  var self = this;
+  for(var i=0; i < this.pewBay.length; i++){
+    if(this.pewBay[i].isExpired === true){
+      self.pewBay.splice(i,1)
+    }
+  }
+};
