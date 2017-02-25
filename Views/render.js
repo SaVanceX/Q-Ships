@@ -25,8 +25,8 @@ Renderer.prototype.initialize = function() {
 
 //iterate through all of the snapshot assets and run draw and each one
 Renderer.prototype.populateUniverse = function(){
-  for(var i = 0; i < this.objectsArray.length; i++){
-    var currentObject = this.objectsArray[i];
+  for(var i = 0; i < this.objectsArray.items.length; i++){
+    var currentObject = this.objectsArray.items[i];
     this.draw(currentObject);
   }
 };
@@ -36,7 +36,7 @@ Renderer.prototype.draw = function(object){
 
   //get dimensions from earlier function
   var dims = this.dimensions(object)
-
+  this.ctx.clearRect(0,0,window.innerWidth,window.innerHeight)
   // paste object accounting for it's angle using canvas rotate function
   this.ctx.fillStyle ="white";
   this.ctx.translate(dims.midpointX, dims.midpointY);
@@ -63,9 +63,11 @@ Renderer.prototype.dimensions = function(currentAsset){
 //takes in a snapshotAssetArray to update itself
 Renderer.prototype.gameLoop = function(snapshotAssets){
   var self = this;
+  
   function execute(){
   window.requestAnimationFrame(execute);
-    self.objectsArray = snapshotAssets;
+  console.log("run")
+    self.objectsArray = snapshotAssets();
     self.populateUniverse();
   }
   execute();
@@ -83,16 +85,16 @@ var itemKey = {
 
 
 // ----------------------INPUTS-----------------------------
-var assets =
-  {
-    width:1000,
-    height:1000,
-    state:0,
-    items: [
-      {x:400, y:600, rad:0, type:"ship"},
-      {x:400, y:300, rad:3.14, type:"merg"}
-    ]
-  }
+// var assets =
+//   {
+//     width:1000,
+//     height:1000,
+//     state:0,
+//     items: [
+//       {x:400, y:600, rad:0, type:"ship"},
+//       {x:400, y:300, rad:3.14, type:"merg"}
+//     ]
+//   }
 
 
 
