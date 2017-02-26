@@ -1,0 +1,23 @@
+{
+  "name": "q-ships",
+  "version": "1.0.0",
+  "description": "",
+  "main": "router.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SaVanceX/Q-Ships.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SaVanceX/Q-Ships/issues"
+  },
+  "homepage": "https://github.com/SaVanceX/Q-Ships#readme",
+  "dependencies": {
+    "express": "^4.14.1",
+    "ws": "^2.1.0"
+  }
+}
