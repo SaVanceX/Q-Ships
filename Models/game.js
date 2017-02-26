@@ -1,5 +1,5 @@
 //Game Class and associated functions
-function Game() {
+function Game(){
  this.width = 1000;
  this.height = 1000;
  this.players = [];
@@ -91,3 +91,6 @@ Game.prototype.updateEntity = function(package){
     this.players[0].ship.sayPew()
   }
 };
+
+game = new Game()
+console.log("ASD")

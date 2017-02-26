@@ -1,7 +1,7 @@
 // ----------------------MODELS-----------------------------
 
 //constructor definition
-function Renderer(canvas, snapshotAssets){
+function Renderer(canvas){
 
   //grab given html canvas object
   this.canvas = canvas;
@@ -10,26 +10,28 @@ function Renderer(canvas, snapshotAssets){
   this.ctx = this.canvas.getContext("2d");
 
   //pipeline assets saved in renderer
-  this.objectsArray = snapshotAssets.items;
-  delete(snapshotAssets["items"]);
-  this.gameSetting = snapshotAssets;
+  // this.objectsArray = snapshotAssets.items;
+  // delete(snapshotAssets["items"]);
+  // this.gameSetting = snapshotAssets;
 }
 
 
 //define canvas dimensions (grabbed from pipeline in definition)
-Renderer.prototype.initialize = function() {
-  this.canvas.height = this.gameSetting.height;
-  this.canvas.width = this.gameSetting.width
-};
+// Renderer.prototype.initialize = function() {
+//   this.canvas.height = this.gameSetting.height;
+//   this.canvas.width = this.gameSetting.width
+// };
 
 
 //iterate through all of the snapshot assets and run draw and each one
 Renderer.prototype.populateUniverse = function(){
   this.ctx.clearRect(0,0,this.canvas.width, this.canvas.height)
 
-  for(var i = 0; i < this.objectsArray.length; i++){
-    var currentObject = this.objectsArray[i];
-    this.draw(currentObject);
+  if(this.objectsArray){
+    for(var i = 0; i < this.objectsArray.length; i++){
+      var currentObject = this.objectsArray[i];
+      this.draw(currentObject);
+    }
   }
 };
 
@@ -62,11 +64,11 @@ Renderer.prototype.dimensions = function(currentAsset){
 
 //runs populateUniverse in a repeated loop
 //takes in a snapshotAssetArray to update itself
-Renderer.prototype.gameLoop = function(snapshotAssets){
+Renderer.prototype.tickTock = function(){
   var self = this;
   function execute(){
   window.requestAnimationFrame(execute);
-    self.objectsArray = snapshotAssets().items;
+    // self.objectsArray = snapshotAssets().items;
     self.populateUniverse();
   }
   execute();

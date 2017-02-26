@@ -1,24 +1,22 @@
 {
-  "name": "q-ship-server",
+  "name": "q-ships",
   "version": "1.0.0",
-  "description": "A simple node chat server",
+  "description": "A simple node pew server",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Yibin&SaVance",
-  "license": "ISC",
-  "dependencies": {
-    "ws": "^2.1.0"
-  },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/khan1782/Q-Ships.git"
   },
+  "author": "Jobin SaVin",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/khan1782/Q-Ships/issues"
   },
-  "homepage": "https://github.com/khan1782/Q-Ships#readme"
+  "homepage": "https://github.com/khan1782/Q-Ships#readme",
+  "dependencies": {
+    "ws": "^2.1.0"
+  }
 }

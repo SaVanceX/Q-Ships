@@ -1,79 +1,80 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 
+//-------------------background------------------------
   //identify starfield div container
   var background = document.getElementById('background');
-
   //initialize new starfield beep beep boop
   var starfield = new Starfield();
-
   //run initialize on initialized starfield
   starfield.initialize(background);
-
   //begin starfield loop
   starfield.start();
+//-----------------------------------------------------
 
 
-//------------will receive from server------------
-  var currentSnapshot = function() {
-    return JSON.parse(game.snapshot())
-  }
-//------------------------------------------------
-
+//------------------render initialization--------------
   //identify game canvas
   var canvas = document.getElementById("gameCanvas")
-
   //initialize renderer machinery *wa wa wa wa*
-  render = new Renderer(canvas, currentSnapshot())
-
-  //set game bounds
-  render.initialize()
-
-  //run game loop
-  render.gameLoop(currentSnapshot);
-
-  //add listeners for key strokes for initialized game
-  keyStrokeListeners()
- 
-})
+  render = new Renderer(canvas)
+  //start your engines
+  render.tickTock()
+//-----------------------------------------------------
 
 
+//-----------------websocket initialization------------
+  var socket;
+  var url = "ws://localhost:8087/";
+
+  // player connects to the server through websocket
+  function connectToServer(render){
+    socket = new WebSocket(url);
+
+    // server sends json package
+    socket.onmessage = function (msg){
+      //update renderer snapshotAssets
+      console.log(msg.data)
+      render.objectsArray = msg.items;
+    }
+  }
+//----------------------------------------------------
+  connectToServer(render);
+  keyStrokeListeners();
+
+// sending message to the server controller
+function sendMessage(message){
+  console.log("did you get here?")
+  console.log(message);
+  socket.send(JSON.stringify(message));
+}
 
 function keyStrokeListeners() {
   //json package ready for editing
   var keys = {keys: {up: false, down: false, left: false, right: false}}
-  
+
   //document event listener for keydown
     document.addEventListener('keydown', function(event){
     //listening for up
     if(event.keyCode === 38 && keys.keys.up === false) {
       keys.keys.up = true;
-      // send json to server controller
-      websock.package = JSON.stringify(keys)
-      websock.sent = true
-
+      sendMessage(keys);
     }
     //listening for down
     if(event.keyCode === 40 && keys.keys.down === false ) {
       keys.keys.down = true;
-      // send json to server controller
-      websock.package = JSON.stringify(keys)
-      websock.sent = true
+      sendMessage(keys);
     }
 
     //listening for left
     if(event.keyCode === 37 && keys.keys.left === false) {
       keys.keys.left = true;
-      // send json to server controller
-      websock.package = JSON.stringify(keys)
-      websock.sent = true
+      sendMessage(keys);
     }
 
     // listening for right
     if(event.keyCode === 39 && keys.keys.right === false ) {
       keys.keys.right = true;
-      // send json to server controller
-      websock.package = JSON.stringify(keys)
-      websock.sent = true
+      sendMessage(keys);
     }
   });
 
@@ -81,28 +82,25 @@ function keyStrokeListeners() {
   document.addEventListener('keyup', function(event){
     if(event.keyCode === 38) {
       keys.keys.up = false;
-      websock.package = JSON.stringify(keys)
-      websock.sent = true
+      sendMessage(keys);
     }
     if(event.keyCode === 40) {
       keys.keys.down = false;
-      websock.package = JSON.stringify(keys)
-      websock.sent = true
+      sendMessage(keys);
     }
     if(event.keyCode === 37) {
       keys.keys.left = false;
-      websock.package = JSON.stringify(keys)
-      websock.sent = true
+      sendMessage(keys);
     }
     if(event.keyCode === 39) {
       keys.keys.right = false;
-      websock.package = JSON.stringify(keys)
-      websock.sent = true
+      sendMessage(keys);
     }
     if(event.keyCode === 32) {
       // send a missle json that is stamped with a user id
-      //SEND THIS!!!! "fire"
-      websock.package = JSON.stringify({fire:"pew"})
+      sendMessage({fire: "pew"});
     }
   });
 }
+})
+

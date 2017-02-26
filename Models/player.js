@@ -6,8 +6,8 @@ var PLAYER_STATE = {
 
 function Player() {
   this.state = PLAYER_STATE.start;
-  this.ship;
   this.uuid = uuid();
+  this.ship = new Ship(this.uuid)
 }
 
 function uuid() {
