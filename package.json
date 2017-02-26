@@ -1,0 +1,24 @@
+{
+  "name": "q-ship-server",
+  "version": "1.0.0",
+  "description": "A simple node chat server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Yibin&SaVance",
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^2.1.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khan1782/Q-Ships.git"
+  },
+  "bugs": {
+    "url": "https://github.com/khan1782/Q-Ships/issues"
+  },
+  "homepage": "https://github.com/khan1782/Q-Ships#readme"
+}

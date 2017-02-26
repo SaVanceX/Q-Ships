@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MessageBoard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+      #chatBox{width: 100%;height: 80%; position: absolute; top: 0; overflow: scroll;}
+      #messageForm{width: 100%; height: 20%; position: absolute; bottom: 0;}
+      html body{width: 100%; height: 100%}
+    </style>
+    <script>
+
+
+
+    </script>
+  </head>
+  <body>
+
+    <center><div id="welcome">
+      <h1>Q-Ships</h1>
+      <input type="text" id="name" placeholder="What is your name?"><br><br>
+      <input type="button" value="Join Quality-Friendship!" onclick="connectToServer();">
+    </div></center>
+    <script></script>
+
+
+    <center><div id="chat">
+      <div id="chatBox">
+      </div>
+
+      <div id="messageForm">
+        <input type="text" id="message">
+        <input type="button" value="Send a Message" onclick="sendMessage();">
+      </div>
+    </div></center>
+  </body>
+</html>
